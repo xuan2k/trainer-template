@@ -128,9 +128,6 @@ class Trainer:
             if early_phase or late_phase:
                 self.log_time(batch_idx, duration, losses["loss"].cpu().data)
 
-                if "depth_gt" in inputs:
-                    self.compute_depth_losses(inputs, outputs, losses)
-
                 self.log("train", inputs, outputs, losses)
                 self.val()
 
@@ -185,9 +182,6 @@ class Trainer:
 
         with torch.no_grad():
             outputs, losses = self.process_batch(inputs)
-
-            if "depth_gt" in inputs:
-                self.compute_depth_losses(inputs, outputs, losses)
 
             self.log("val", inputs, outputs, losses)
             del inputs, outputs, losses
