@@ -45,7 +45,7 @@ class Trainer:
         # self.models["depth"].to(self.device)
         # self.parameters_to_train += list(self.models["depth"].parameters())
 
-        for key, model in self.models:
+        for key, model in self.models.items():
             self.models[key] = self.set_device(model)
 
         # OPTIMIZER
